@@ -27,3 +27,5 @@ export { default as compose } from './lib/compose';
 
 export * from './lib/graphql';
 export { default as db } from './lib/db';
+
+export { default as intersectDeep } from './lib/query/lib/intersectDeep';

@@ -13,3 +13,5 @@ export { default as Query } from './lib/query/query.client';
 export { default as NamedQuery } from './lib/namedQuery/namedQuery.client';
 
 export { default as compose } from './lib/compose';
+
+export { default as intersectDeep } from './lib/query/lib/intersectDeep';
