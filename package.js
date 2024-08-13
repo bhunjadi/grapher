@@ -20,7 +20,7 @@ const npmPackages = {
 Package.onUse(function (api) {
   Npm.depends(npmPackages);
 
-  api.versionsFrom(['3.0']);
+  api.versionsFrom(['3.0.1']);
 
   api.addFiles('lib/scoping/client.js', 'client');
   api.addFiles('lib/scoping/server.js', 'server');
@@ -31,11 +31,11 @@ Package.onUse(function (api) {
     'promise',
     'check',
     'reactive-var',
-    'zodern:types',
+    'zodern:types@1.0.13',
     'mongo',
 
     // https://github.com/Meteor-Community-Packages/meteor-collection-hooks/
-    'matb33:collection-hooks@2.0.0-rc.1',
+    'matb33:collection-hooks@2.0.0-rc.2',
 
     // https://github.com/Meteor-Community-Packages/meteor-publish-composite
     'reywood:publish-composite@1.8.9',
