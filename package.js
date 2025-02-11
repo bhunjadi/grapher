@@ -35,20 +35,20 @@ Package.onUse(function (api) {
     'mongo',
 
     // https://github.com/Meteor-Community-Packages/meteor-collection-hooks/
-    'matb33:collection-hooks@2.0.0-rc.2',
+    'matb33:collection-hooks@2.0.0',
 
     // https://github.com/Meteor-Community-Packages/meteor-publish-composite
     'reywood:publish-composite@1.8.9',
 
     // https://github.com/Meteor-Community-Packages/mongo-collection-instances
-    'dburles:mongo-collection-instances@1.0.0-rc300.1',
+    'dburles:mongo-collection-instances@1.0.0',
 
     // Note: seems to be not working. Getting weird conflict that cultofcoders:grapher@1.5.0 depends on version 0.1.0
     // https://github.com/peerlibrary/meteor-subscription-scope
     // 'peerlibrary:subscription-scope@0.5.0',
 
     // https://github.com/Meteor-Community-Packages/denormalize/
-    'herteby:denormalize@0.7.0-beta.0',
+    'herteby:denormalize@0.7.0-beta.1',
   ];
 
   api.use(packages);
@@ -72,11 +72,11 @@ Package.onTest(function (api) {
     'random',
     'ecmascript',
     'underscore',
-    'matb33:collection-hooks@2.0.0-rc.1',
-    'reywood:publish-composite@1.8.9',
-    'dburles:mongo-collection-instances@1.0.0-rc300.1',
+    'matb33:collection-hooks@2.0.0',
+    'reywood:publish-composite@1.8.12',
+    'dburles:mongo-collection-instances@1.0.0',
     // 'peerlibrary:subscription-scope@0.5.0',
-    'herteby:denormalize@0.7.0-beta.0',
+    'herteby:denormalize@0.7.0-beta.1',
     'mongo',
   ];
 
