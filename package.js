@@ -38,7 +38,7 @@ Package.onUse(function (api) {
     'matb33:collection-hooks@2.0.0',
 
     // https://github.com/Meteor-Community-Packages/meteor-publish-composite
-    'reywood:publish-composite@1.8.9',
+    'reywood:publish-composite@1.9.0',
 
     // https://github.com/Meteor-Community-Packages/mongo-collection-instances
     'dburles:mongo-collection-instances@1.0.0',
@@ -48,7 +48,7 @@ Package.onUse(function (api) {
     // 'peerlibrary:subscription-scope@0.5.0',
 
     // https://github.com/Meteor-Community-Packages/denormalize/
-    'herteby:denormalize@0.7.0-beta.1',
+    'herteby:denormalize@0.7.0',
   ];
 
   api.use(packages);
@@ -73,10 +73,10 @@ Package.onTest(function (api) {
     'ecmascript',
     'underscore',
     'matb33:collection-hooks@2.0.0',
-    'reywood:publish-composite@1.8.12',
+    'reywood:publish-composite@1.9.0',
     'dburles:mongo-collection-instances@1.0.0',
     // 'peerlibrary:subscription-scope@0.5.0',
-    'herteby:denormalize@0.7.0-beta.1',
+    'herteby:denormalize@0.7.0',
     'mongo',
   ];
 
