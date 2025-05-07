@@ -11,7 +11,7 @@ Package.describe({
 });
 
 const npmPackages = {
-  sift: '15.0.0',
+  mingo: '6.6.0',
   'dot-object': '1.9.0',
   'lodash.clonedeep': '4.5.0',
   'deep-extend': '0.6.0',
