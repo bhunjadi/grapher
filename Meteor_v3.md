@@ -4,6 +4,7 @@
 2. Removed dependencies that don't support Meteor v3 (denormalize)
 3. Fixed dburles:mongo-collection-instances@0.4.0: using v1.0.0 from local packages dir
 4. Tried running with peerlibrary:subscription-scope@0.5.0. Not working because of dependencies mismatch.
+5. Republished peerlibrary:subscription-scope@0.5.0 under harry97:subscription-scope@0.6.0
 
 ### dburles:mongo-collection-instances@0.4.0
 

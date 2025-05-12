@@ -11,7 +11,7 @@ Package.describe({
 });
 
 const npmPackages = {
-  sift: '15.0.0',
+  mingo: '6.6.0',
   'dot-object': '1.9.0',
   'lodash.clonedeep': '4.5.0',
   'deep-extend': '0.6.0',
@@ -22,13 +22,9 @@ Package.onUse(function (api) {
 
   api.versionsFrom(['3.0.1', '3.1.2', '3.2']);
 
-  api.addFiles('lib/scoping/client.js', 'client');
-  api.addFiles('lib/scoping/server.js', 'server');
-
   var packages = [
     'ecmascript',
     'underscore',
-    'promise',
     'check',
     'reactive-var',
     'zodern:types@1.0.13',
@@ -43,9 +39,8 @@ Package.onUse(function (api) {
     // https://github.com/Meteor-Community-Packages/mongo-collection-instances
     'dburles:mongo-collection-instances@1.0.0',
 
-    // Note: seems to be not working. Getting weird conflict that cultofcoders:grapher@1.5.0 depends on version 0.1.0
-    // https://github.com/peerlibrary/meteor-subscription-scope
-    // 'peerlibrary:subscription-scope@0.5.0',
+    // https://github.com/harryadel/meteor-subscription-scope
+    'harry97:subscription-scope@0.6.0',
 
     // https://github.com/Meteor-Community-Packages/denormalize/
     'herteby:denormalize@0.7.0',
@@ -60,8 +55,6 @@ Package.onUse(function (api) {
 Package.onTest(function (api) {
   api.use('cultofcoders:grapher');
 
-  // api.addFiles('lib/scoping/client.js', 'client');
-  // api.addFiles('lib/scoping/server.js', 'server');
 
   Npm.depends({
     ...npmPackages,
@@ -75,7 +68,7 @@ Package.onTest(function (api) {
     'matb33:collection-hooks@2.0.0',
     'reywood:publish-composite@1.9.0',
     'dburles:mongo-collection-instances@1.0.0',
-    // 'peerlibrary:subscription-scope@0.5.0',
+    'harry97:subscription-scope@0.5.0',
     'herteby:denormalize@0.7.0',
     'mongo',
   ];
@@ -83,7 +76,7 @@ Package.onTest(function (api) {
   api.use(packages);
   api.use('tracker');
 
-  api.use(['meteortesting:mocha']);
+  api.use(['meteortesting:mocha@3.3.0-rc.0']);
 
   // LINKS
   api.addFiles('lib/links/tests/main.js', 'server');
