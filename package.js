@@ -24,7 +24,6 @@ Package.onUse(function (api) {
 
   var packages = [
     'ecmascript',
-    'underscore',
     'check',
     'reactive-var',
     'zodern:types@1.0.13',
@@ -61,7 +60,6 @@ Package.onTest(function (api) {
   var packages = [
     'random',
     'ecmascript',
-    'underscore',
     'matb33:collection-hooks@2.0.0',
     'reywood:publish-composite@1.9.0',
     'harry97:subscription-scope@0.5.0',
