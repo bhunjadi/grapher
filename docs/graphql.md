@@ -29,7 +29,7 @@ const Query = {
            // Simply removes from the graph what fields it won't allow
            // Can work with deep strings like 'comments.author'
            deny, // String[]
-        }).fetch();
+        }).fetchAsync();
     }
 }
 ```
@@ -86,7 +86,7 @@ const resolvers = {
         users(_, args, ctx, ast) {
             const query = db.users.astToQuery(ast);
 
-            return query.fetch();
+            return await query.fetchAsync();
         },
     },
 };

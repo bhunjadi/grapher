@@ -1,6 +1,11 @@
 ## 2.0.0
 - BREAKING: Minimum required Meteor version 3.0.1
-- Updated dependencies across the board
+- BREAKING: Server-side queries must use `fetchAsync()`, `fetchOneAsync()` and `countAsync()` instead of their synchronous counterparts
+- BREAKING: Static queries on frontend must use `query.fetchAsync()` instead of `query.fetch(cb)`. `query.fetch()` worked with reactive and static queries before, but now we have to use `Meteor.callAsync()` instead of `Meteor.call()` so underlying `_fetchStatic` method returns a Promise for static queries.
+- MAJOR: **Removed underscore.js dependency** - All underscore methods replaced with native JavaScript equivalents for better performance and smaller bundle size
+- MAJOR: **Removed dburles:mongo-collection-instances** - Replaced it with [Mongo.getCollection](https://docs.meteor.com/api/collections.html#Mongo-getCollection) instead
+- NEW: **Async reducers support** - Reducers can now be asynchronous and return promises
+- NEW: **Enhanced reducer cycle detection** - Improved detection of self-dependencies and circular references in reducers to prevent infinite loops
 
 ## 1.5.0
 - Minimum Meteor version bumped to 2.3

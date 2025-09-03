@@ -48,7 +48,7 @@ Meteor.methods({
             }
         });
         
-        return post.fetchOne();
+        return await post.fetchOneAsync();
     }
 })
 ```
@@ -220,7 +220,7 @@ const user = Meteor.users.createQuery({
     group: {
         name: 1,
     }
-}).fetchOne()
+}).fetchOneAsync()
 ```
 
 `user` will look like this:
@@ -256,7 +256,7 @@ const group = Groups.createQuery({
     users: {
         firstName: 1,
     }
-}).fetchOne()
+}).fetchOneAsync()
 ```
 
 `group` will look like:
@@ -452,7 +452,7 @@ Appointments.createQuery({
     },
     startDate: 1,
     endDate: 1,
-}).fetch();
+}).fetchAsync();
 ```
 
 If your foreign identity field is unique inside linked collection (in this case Tasks), you can use `type: "one"` and get a single task instead of an array.

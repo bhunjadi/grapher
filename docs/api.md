@@ -53,6 +53,16 @@ Collection.addReducers({
         // if this option is specified, this will act as a data expander, not a field
         expand: true, 
     },
+    
+    // Async reducer (new in 2.0)
+    asyncReducerName: {
+        body, // Object, dependency graph
+        async reduce(object) {
+            // perform async operations
+            const result = await someAsyncOperation(object);
+            return result;
+        }
+    },
 });
 ```
 
@@ -104,7 +114,7 @@ const Query = {
            deny, // String[]
         })
 
-        return query.fetch();
+        return await query.fetchAsync();
     }
 }
 ```
@@ -171,6 +181,11 @@ query.setParams({}); // extends current params
 #### Server-Side
 
 ```js
+await query.clone({ params }).fetchAsync();
+await query.clone({ params }).fetchOneAsync();
+await query.clone({ params }).countAsync();
+
+// Legacy sync methods (deprecated)
 query.clone({ params }).fetch();
 query.clone({ params }).fetchOne();
 query.clone({ params }).getCount();
@@ -181,6 +196,12 @@ query.clone({ params }).getCount();
 Static:
 
 ```js
+// New async methods (recommended)
+await query.clone({ params }).fetchAsync();
+await query.clone({ params }).fetchOneAsync();
+await query.clone({ params }).countAsync();
+
+// Legacy callback methods (deprecated)
 query.clone({ params }).fetch((err, res) => {});
 query.clone({ params }).fetchOne((err, res) => {});
 query.clone({ params }).getCount((err, res) => {});
