@@ -17,7 +17,7 @@ const user = Meteor.users.createQuery({
         firstName: 1,
         lastName: 1,
     }
-}).fetchOne();
+}).fetchOneAsync();
 ```
 
 Now `user` will look like:
@@ -103,7 +103,7 @@ export default Posts.createQuery({
 const postsWithComments = postListQuery.clone({
     lastWeekPosts: true,
     approvedCommentsOnly: true
-}).fetch();
+}).fetchAsync();
 ```
 
 ### Default $filter()
@@ -131,7 +131,7 @@ const posts = postQuery.clone({
     options: {
         sort: {createdAt: -1},
     }
-}).fetch();
+}).fetchAsync();
 ```
 
 If you like to disable this functionality, add your own $filter() function or use a dummy one:
@@ -317,11 +317,11 @@ It really depends on your context, but `$postFilters`, `$postOptions` and `$post
 If you want just to return the number of top level documents a query has:
 
 ```js
-query.getCount()
+await query.countAsync()
 ```
 
 This will be very useful for pagination when we reach the client-side domain, or you just need a count.
-Note that `getCount()` applies only the processed `filters` but not `options`.
+Note that `countAsync()` applies only the processed `filters` but not `options`.
 
 ## Mix'em up
 

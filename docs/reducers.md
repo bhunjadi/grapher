@@ -38,9 +38,9 @@ Meteor.users.addReducers({
 
 Query:
 ```js
-const user = Meteor.users.createQuery({
+const user = await Meteor.users.createQuery({
     fullName: 1,
-}).fetchOne();
+}).fetchOneAsync();
 ```
 
 Results to:
@@ -71,9 +71,9 @@ Meteor.users.addReducers({
 
 Query:
 ```js
-const user = Meteor.users.createQuery({
+const user = await Meteor.users.createQuery({
     groupNames: 1,
-}).fetchOne();
+}).fetchOneAsync();
 ```
 
 Result:
@@ -94,7 +94,7 @@ const user = Meteor.users.createQuery({
     groups: {
         createdAt: 1,
     }
-}).fetchOne();
+}).fetchOneAsync();
 ```
 
 Result:
@@ -110,6 +110,55 @@ Result:
 ```
 
 Notice that group `name` is not there. This is because we clean leftovers so the result is predictable.
+
+## Async Reducers
+
+**New in 2.0**: Reducers can now be asynchronous! This allows you to perform async operations like API calls, database queries, or any other async work within your reducers.
+
+```js
+Meteor.users.addReducers({
+    externalData: {
+        body: {
+            _id: 1,
+            email: 1
+        },
+        async reduce(object) {
+            // Perform async operations
+            const externalData = await fetch(`/api/user-data/${object._id}`);
+            const result = await externalData.json();
+            
+            return {
+                userId: object._id,
+                email: object.email,
+                externalInfo: result
+            };
+        }
+    },
+    
+    // You can also use async arrow functions
+    asyncStats: {
+        body: { _id: 1 },
+        reduce: async (object) => {
+            const stats = await calculateUserStats(object._id);
+            return stats;
+        }
+    }
+});
+```
+
+Query:
+```js
+const user = await Meteor.users.createQuery({
+    externalData: 1,
+    asyncStats: 1
+}).fetchOneAsync();
+```
+
+**Important Notes:**
+- Async reducers must be awaited, so always use `fetchAsync()`, `fetchOneAsync()`, or `countAsync()` methods
+- Async reducers can be mixed with synchronous reducers in the same query
+- Error handling should be implemented within the reducer function
+- Performance considerations: async reducers may increase query execution time
 
 ## Reducers can be composed
 

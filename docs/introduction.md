@@ -47,7 +47,7 @@ Meteor.methods({
           createdBy: 1,
         },
       },
-    ).fetch();
+    ).fetchAsync();
   },
 });
 ```
@@ -56,14 +56,14 @@ Transforming this into a Grapher query looks like this:
 
 ```js
 Meteor.methods({
-  posts() {
+  async posts() {
     const query = Posts.createQuery({
       title: 1,
       createdAt: 1,
       createdBy: 1,
     });
 
-    return query.fetch();
+    return await query.fetchAsync();
   },
 });
 ```
@@ -77,7 +77,7 @@ If, for example, you want to filter or sort your query, we introduce the `$filte
 
 ```js
 Meteor.methods({
-  posts() {
+  async posts() {
     // Previously Posts.find({isApproved: true}, {sort: '...', fields: '...'});
     const query = Posts.createQuery({
       $filters: {
@@ -91,13 +91,13 @@ Meteor.methods({
       createdBy: 1,
     });
 
-    return query.fetch();
+    return await query.fetchAsync();
   },
 });
 ```
 
-If for example you are searching an element by `_id`, you may have `$filters: {_id: 'XXX'}`, then instead of `fetch()` you
-can call `.fetchOne()` so it will return the first element found.
+If for example you are searching an element by `_id`, you may have `$filters: {_id: 'XXX'}`, then instead of `fetchAsync()` you
+can call `.fetchOneAsync()` so it will return the first element found.
 
 `$filters` and `$options` are the ones supported by [Mongo.Collection.find()](http://docs.meteor.com/api/collections.html#Mongo-Collection-find)
 
@@ -107,7 +107,7 @@ The nature of a query is to be re-usable. For this we introduce a special type o
 which allows the query to receive parameters and adapt before it executes:
 
 ```js
-// We export the query, notice there is no .fetch()
+// We export the query, notice there is no .fetchAsync()
 
 export default Posts.createQuery({
   $filter({ filters, options, params }) {
@@ -132,12 +132,12 @@ Lets see how we can re-use the query defined above:
 import postListQuery from '...';
 
 Meteor.methods({
-  posts() {
-    return postListQuery
+  async posts() {
+    return await postListQuery
       .clone({
         isApproved: true,
       })
-      .fetch();
+      .fetchAsync();
   },
 });
 ```
@@ -151,7 +151,7 @@ You can also use `setParams()` to configure parameters, which extends the curren
 import postListQuery from '...';
 
 Meteor.methods({
-  posts() {
+  async posts() {
     const query = postListQuery.clone();
 
     // Warning, if you don't use .clone() and you just .setParams(),
@@ -160,7 +160,7 @@ Meteor.methods({
       isApproved: true,
     });
 
-    return query.fetch();
+    return await query.fetchAsync();
   },
 });
 ```

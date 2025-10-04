@@ -55,7 +55,7 @@ If you would like to use this query you have two ways:
 ```js
 import userAdminListQuery from '/imports/db/users/queries/userAdminList.js';
 
-const admins = userAdminListQuery.fetch();
+const admins = await userAdminListQuery.fetchAsync();
 ```
 
 Or you could use `createQuery`:
@@ -64,7 +64,7 @@ import {createQuery} from 'meteor/cultofcoders:grapher';
 
 const admins = createQuery({
     userAdminList: params, // or {} if no params
-}).fetch(); 
+}).fetchAsync(); 
 // will return a clone of the named query, with the params specified
 ```
 
@@ -79,7 +79,7 @@ const admins = createQuery({
     userAdminList: {
         options: {createdAt: -1}
     },
-}).fetch();
+}).fetchAsync();
 ```
 
 ## Go Modular, Always.
@@ -258,7 +258,7 @@ const handle = query.subscribeCount();
 
 Tracker.autorun(() => {
     if (handle.ready()) {
-        console.log(query.getCount());
+        console.log(query.getCount()); // Reactive count still uses getCount()
         query.unsubscribeCount();
     }
 });
@@ -283,7 +283,7 @@ Meaning you can do:
 
 But don't. Grapher takes care of this.
 
-When we do `query.fetch()` on a reactive query, it gives you a complete data graph with the items in the same form as you
+When we do `query.fetch()` on a reactive query (note: reactive queries still use the synchronous `fetch()` method), it gives you a complete data graph with the items in the same form as you
 would have received from a static query. When an element inside your data graph changes, the `fetch()` function is re-run
 if you are inside a `Tracker.autorun()` or a reactive context, because in the back, it does `find().fetch()` on client-side collections,
 and afterwards it assembles your data.

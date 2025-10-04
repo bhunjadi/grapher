@@ -44,7 +44,7 @@ const user = Meteor.users.createQuery({
     avatar: {
         smallThumbPath: 1,
     }
-}).fetchOne()
+}).fetchOneAsync()
 ```
 
 Grapher will check to see if avatar's body is a subbody of the denormalized body. If yes, it will hit the `avatarCache` field,
@@ -70,7 +70,7 @@ const user = Meteor.users.createQuery({
         smallThumbPath: 1,
         createdAt: 1,
     }
-}).fetchOne()
+}).fetchOneAsync()
 ```
 
 Will result in a subsequent database request, because `createdAt` is not in the denormalized body. But if you replace `createdAt` with `path` then it will hit the cache.
@@ -117,7 +117,7 @@ const dramaticUsers = Meteor.users.createQuery({
         'reviewedBooksCache.type': 'Drama'
     },
     email: 1,
-}).fetch();
+}).fetchAsync();
 ```
 
 That was it, but denormalization comes with a price:

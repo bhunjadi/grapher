@@ -24,20 +24,16 @@ Package.onUse(function (api) {
 
   var packages = [
     'ecmascript',
-    'underscore',
     'check',
     'reactive-var',
     'zodern:types@1.0.13',
     'mongo',
 
     // https://github.com/Meteor-Community-Packages/meteor-collection-hooks/
-    'matb33:collection-hooks@2.0.0',
+    'matb33:collection-hooks@2.1.0-beta.4',
 
     // https://github.com/Meteor-Community-Packages/meteor-publish-composite
     'reywood:publish-composite@1.9.0',
-
-    // https://github.com/Meteor-Community-Packages/mongo-collection-instances
-    'dburles:mongo-collection-instances@1.0.0',
 
     // https://github.com/harryadel/meteor-subscription-scope
     'harry97:subscription-scope@0.6.0',
@@ -64,10 +60,8 @@ Package.onTest(function (api) {
   var packages = [
     'random',
     'ecmascript',
-    'underscore',
     'matb33:collection-hooks@2.0.0',
     'reywood:publish-composite@1.9.0',
-    'dburles:mongo-collection-instances@1.0.0',
     'harry97:subscription-scope@0.5.0',
     'herteby:denormalize@0.7.0',
     'mongo',
