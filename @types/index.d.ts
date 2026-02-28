@@ -1,4 +1,3 @@
-declare module 'meteor/cultofcoders:grapher' {
   export type LinkDenormalizeSchema = {
     field: string;
     body: unknown;
@@ -273,7 +272,7 @@ declare module 'meteor/cultofcoders:grapher' {
   ): NamedQueryBaseClass;
 
   function createQuery(body: Body, options?: QueryOptions): QueryBase;
-}
+
 
 namespace Grapher {
   export * from 'meteor/cultofcoders:grapher';
